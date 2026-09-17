@@ -498,6 +498,10 @@ exports.LoadUtils = () => {
             id: newMsgKey,
         };
 
+        // MediaData is a model whose private ID field collides with Msg's                                             
+        // private ID field when its enumerable properties are spread above.                                           
+        delete message.__x_id;
+
         // Bot's won't reply if canonicalUrl is set (linking)
         if (botOptions) {
             delete message.canonicalUrl;
